@@ -91,10 +91,13 @@ class SVM(BaseModel):
         return self
 
     def fit_smo(self, X, y):
+<<<<<<< HEAD
         """
         Sequential Minimal Optimization
         Reference: https://www.microsoft.com/en-us/research/uploads/prod/1998/04/sequential-minimal-optimization.pdf
         """
+=======
+>>>>>>> 3a7bdf48766437d9d3471eb8133cf14dd8c282ca
         if not self.is_trained:
             self.is_trained = True
         else:
@@ -245,7 +248,11 @@ class SVM(BaseModel):
             elif num_changed == 0:
                 examine_all = 1
             num_iters += 1
+<<<<<<< HEAD
         print('nummmmmm iters::::!!!!:::', num_iters)
+=======
+
+>>>>>>> 3a7bdf48766437d9d3471eb8133cf14dd8c282ca
         return self
 
     def objective_function(self, X, y, alphas):
@@ -270,7 +277,11 @@ class SVM(BaseModel):
         """
         linear kernel
         """
+<<<<<<< HEAD
         return np.dot(x, v.T)
+=======
+        return np.dot(x, v)
+>>>>>>> 3a7bdf48766437d9d3471eb8133cf14dd8c282ca
 
     def rbf(self, x: np.array, v: np.array) -> np.array:
         """
@@ -295,6 +306,7 @@ if __name__ == '__main__':
     Tested on two datasets, SPECTF dataset from UC Irvine, and sklearn breast cancer dataset
     Uncommon any of the following chunks to 
     """
+<<<<<<< HEAD
     fileDir = os.path.dirname(os.path.realpath('__file__'))
     data_train = pd.read_csv(os.path.join(fileDir, '../data/SPECTF_train.csv'), header=None).to_numpy()
     data_test = pd.read_csv(os.path.join(fileDir, '../data/SPECTF_test.csv'), header=None).to_numpy()
@@ -310,12 +322,33 @@ if __name__ == '__main__':
     # bc_X, bc_y = breast_cancer_dataset.data, breast_cancer_dataset.target
     # bc_y = np.where(bc_y == 0, -1, bc_y)
     # X_train, X_test, y_train, y_test = train_test_split(bc_X, bc_y, test_size=0.5)
+=======
+    # fileDir = os.path.dirname(os.path.realpath('__file__'))
+    # data_train = pd.read_csv(os.path.join(fileDir, '../data/SPECTF_train.csv'), header=None).to_numpy()
+    # data_test = pd.read_csv(os.path.join(fileDir, '../data/SPECTF_test.csv'), header=None).to_numpy()
+    # X_train, X_test = data_train[:, 1:], data_test[:, 1:]
+    # y_train, y_test = data_train[:, 0], data_test[:, 0]
+    # y_train, y_test = np.where(y_train == 0, -1, y_train), np.where(y_test == 0, -1, y_test)
+>>>>>>> 3a7bdf48766437d9d3471eb8133cf14dd8c282ca
     # X_val, X_test, y_val, y_test = train_test_split(X_test, y_test, test_size=0.5)
     # normalizer = preprocessing.Normalizer()
     # normalized_train_X = normalizer.fit_transform(X_train)
     # normalized_val_X, normalized_test_X = normalizer.transform(X_val), normalizer.transform(X_test)
 
+<<<<<<< HEAD
     svm = SVM(C=0.5, max_iters=1000, kernel='rbf')
+=======
+    breast_cancer_dataset = datasets.load_breast_cancer()
+    bc_X, bc_y = breast_cancer_dataset.data, breast_cancer_dataset.target
+    bc_y = np.where(bc_y == 0, -1, bc_y)
+    X_train, X_test, y_train, y_test = train_test_split(bc_X, bc_y, test_size=0.5)
+    X_val, X_test, y_val, y_test = train_test_split(X_test, y_test, test_size=0.5)
+    normalizer = preprocessing.Normalizer()
+    normalized_train_X = normalizer.fit_transform(X_train)
+    normalized_val_X, normalized_test_X = normalizer.transform(X_val), normalizer.transform(X_test)
+
+    svm = SVM(C=0.5, max_iters=1000)
+>>>>>>> 3a7bdf48766437d9d3471eb8133cf14dd8c282ca
     svm.fit(X_train, y_train, X_val, y_val)
     result_base = svm.predict(X_test)
     print('Accuracy of SVM: ', performance.accuracy(result_base, y_test))
@@ -327,6 +360,7 @@ if __name__ == '__main__':
     benchmark_svc_prediction = benchmark_svc.predict(X_test)
     print('Accuracy of sklearn.svm.SVC: ', performance.accuracy(benchmark_svc_prediction, y_test))
     # plt.plot(svm.scores)
+<<<<<<< HEAD
     # plt.xlabel('# of iterations')
     # plt.ylabel('Validation Accuracy')
 
@@ -342,3 +376,12 @@ if __name__ == '__main__':
     # svm_smo.fit_smo(X_train, y_train)
     # result_smo = svm_smo.predict(X_test).flatten()
     # print('Accuracy of SVM using SMO: ', performance.accuracy(result_smo, y_test))
+=======
+    # plt.show()
+
+    svm_smo = SVM(C=0.5, tol=0.01, eps=0.01, max_iters=-1)
+    svm_smo.fit_smo(X_train, y_train)
+    result_smo = svm_smo.predict(X_test).flatten()
+    print('Accuracy of SVM using SMO: ', performance.accuracy(result_smo, y_test))
+    print(result_smo)
+>>>>>>> 3a7bdf48766437d9d3471eb8133cf14dd8c282ca

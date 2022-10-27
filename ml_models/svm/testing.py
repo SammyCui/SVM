@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+<<<<<<< HEAD
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 
@@ -65,3 +66,18 @@ if __name__ == '__main__':
     my_svm = svc(sigma=100, kernel='rbf', C=3, n_iterations=10000, lr=0.0001, momentum=0.001)
     my_svm.fit(normalized_train_X, y_train)
     print(my_svm.alpha)
+=======
+from utils import performance
+from sklearn.model_selection import train_test_split
+from svm import SVM
+
+
+if __name__ == '__main__':
+    spectf_train = pd.read_csv(r'../data/SPECTF_train.csv')
+    spectf_test = pd.read_csv(r'../data/SPECTF_test.csv')
+
+
+
+    svm = SVM()
+    svm.fit()
+>>>>>>> 3a7bdf48766437d9d3471eb8133cf14dd8c282ca
