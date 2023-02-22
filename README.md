@@ -1,3 +1,1 @@
-# Implementation and Exploration of ML models
-
-Reference: https://github.com/scikit-learn/scikit-learn
+# SVM implementation with Sequential minimal optimization algorithm
